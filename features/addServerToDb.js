@@ -5,13 +5,12 @@ const db = require('../config/db');
       name: 'resetconfig',
       description: "Crea un annuncio ",
       async execute(message) {
-        const guild_id = message.guildId;
+        const guild_id = message.guildId;       
   
       await message.reply({ content: 'Do you really wanna delete your server config?' });
-        
-        db.query(`SELECT * FROM server_config WHERE guild_id = "${guild_id}";`, (err, rows, fields) => {
+ 
+         db.query(`SELECT * FROM server_config WHERE guild_id = "${guild_id}";`, (err, rows, fields) => {
               if(err) throw err;
-            //   rows = JSON.stringify(rows);
               if (rows[0]) {
                   message.reply({content: "This guild is already registered in our database"})
               } else {
